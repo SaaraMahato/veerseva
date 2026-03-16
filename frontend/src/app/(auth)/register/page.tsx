@@ -155,9 +155,9 @@ export default function RegisterPage() {
                 className="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
               >
                 <option value="">Select your rank</option>
-                {ARMY_RANKS.map((r) => (
-                  <option key={r} value={r}>{r}</option>
-                ))}
+              {ARMY_RANKS.map((r: any) => (
+  <option key={r.value} value={r.value}>{r.label}</option>
+))}
               </select>
               {errors.rank && (
                 <p className="mt-1.5 text-xs text-red-600">{errors.rank}</p>
