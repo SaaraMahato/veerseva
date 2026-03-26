@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
@@ -77,12 +78,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'veerseva.wsgi.application'
 
 # ─── Database ─────────────────────────────────────────────────
-DATABASES = {
-    'default': {
-        'ENGINE':   'django.db.backends.sqlite3',
-        'NAME':     BASE_DIR / 'db.sqlite3',
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+        )
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME':   BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # ─── Password Validation ──────────────────────────────────────
 AUTH_PASSWORD_VALIDATORS = [
@@ -150,38 +161,11 @@ DEFAULT_FROM_EMAIL  = os.getenv('EMAIL_HOST_USER', 'veerseva@gmail.com')
 OTP_EMAIL_SENDER  = DEFAULT_FROM_EMAIL
 OTP_EMAIL_SUBJECT = 'VeerSeva — Your OTP Code'
 OTP_EMAIL_BODY    = 'Your VeerSeva OTP is: {token}\n\nValid for 10 minutes.'
-OTP_EMAIL_TOKEN_VALIDITY = 600  # 10 minutes
-
-# ─── Celery ───────────────────────────────────────────────────
-CELERY_BROKER_URL         = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
-CELERY_RESULT_BACKEND     = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
-CELERY_ACCEPT_CONTENT     = ['json']
-CELERY_TASK_SERIALIZER    = 'json'
-CELERY_RESULT_SERIALIZER  = 'json'
-CELERY_TIMEZONE           = 'Asia/Kolkata'
-
-# ─── Redis Cache ──────────────────────────────────────────────
-CACHES = {
-    'default': {
-        'BACKEND':  'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': os.getenv('REDIS_URL', 'redis://localhost:6379/1'),
-    }
-}
-
-# ─── Blockchain (Ganache) ─────────────────────────────────────
-GANACHE_URL         = os.getenv('GANACHE_URL',         'http://localhost:8545')
-CONTRACT_ADDRESS    = os.getenv('CONTRACT_ADDRESS',    '')
-DEPLOYER_PRIVATE_KEY = os.getenv('DEPLOYER_PRIVATE_KEY', '')
-
-# ─── IPFS ─────────────────────────────────────────────────────
-IPFS_API_URL = os.getenv('IPFS_API_URL', '/ip4/127.0.0.1/tcp/5001')
+OTP_EMAIL_TOKEN_VALIDITY = 600
 
 # ─── Telegram Bot ─────────────────────────────────────────────
-TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')
-
-# ─── Ollama AI ────────────────────────────────────────────────
-OLLAMA_BASE_URL = os.getenv('OLLAMA_BASE_URL', 'http://localhost:11434')
-OLLAMA_MODEL    = os.getenv('OLLAMA_MODEL',    'llama3')
+TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+TELEGRAM_CHAT_ID   = os.environ.get('TELEGRAM_CHAT_ID', '')
 
 # ─── SLA Days ─────────────────────────────────────────────────
 SLA_DAYS = {
@@ -191,6 +175,3 @@ SLA_DAYS = {
     'housing':      45,
     'resettlement': 30,
 }
-# Telegram
-TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
-TELEGRAM_CHAT_ID   = os.environ.get('TELEGRAM_CHAT_ID', '')
