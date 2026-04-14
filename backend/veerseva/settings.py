@@ -30,6 +30,7 @@ THIRD_PARTY_APPS = [
     'corsheaders',
     'django_otp',
     'django_otp.plugins.otp_email',
+    'drf_spectacular',  # ← add this
 ]
 
 LOCAL_APPS = [
@@ -130,7 +131,16 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',  # ← add this
 }
+
+# ─── Spectacular (Swagger) ────────────────────────────────────
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'VeerSeva API',
+    'DESCRIPTION': 'API documentation for VeerSeva - Veteran Services Platform',
+    'VERSION': '1.0.0',
+}
+
 
 # ─── JWT Settings ─────────────────────────────────────────────
 SIMPLE_JWT = {
