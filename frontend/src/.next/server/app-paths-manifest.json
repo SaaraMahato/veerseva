@@ -1,0 +1,22 @@
+{
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(auth)/register/page": "app/(auth)/register/page.js",
+  "/(auth)/verify-otp.tsx/page": "app/(auth)/verify-otp.tsx/page.js",
+  "/(dashboard)/assistant/page": "app/(dashboard)/assistant/page.js",
+  "/(dashboard)/benefits/[id]/page": "app/(dashboard)/benefits/[id]/page.js",
+  "/(dashboard)/benefits/apply/page": "app/(dashboard)/benefits/apply/page.js",
+  "/(dashboard)/benefits/page": "app/(dashboard)/benefits/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
+  "/(dashboard)/documents/page": "app/(dashboard)/documents/page.js",
+  "/(dashboard)/documents/verify/page": "app/(dashboard)/documents/verify/page.js",
+  "/(dashboard)/grievances/[id]/page": "app/(dashboard)/grievances/[id]/page.js",
+  "/(dashboard)/grievances/new/page": "app/(dashboard)/grievances/new/page.js",
+  "/(dashboard)/grievances/page": "app/(dashboard)/grievances/page.js",
+  "/(dashboard)/profile/page": "app/(dashboard)/profile/page.js",
+  "/(officer)/officer/applications/[id]/page": "app/(officer)/officer/applications/[id]/page.js",
+  "/(officer)/officer/applications/page": "app/(officer)/officer/applications/page.js",
+  "/(officer)/officer/dashboard/page": "app/(officer)/officer/dashboard/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js"
+}
