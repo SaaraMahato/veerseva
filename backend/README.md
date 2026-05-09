@@ -134,7 +134,7 @@ npm install
 npm run dev
 ```
 
-Frontend runs at: http://localhost:3000
+Frontend runs at: http://10.129.143.116:3000
 
 ### 4. Environment variables
 
@@ -187,7 +187,8 @@ Full interactive docs available at: `/api/docs/`
 
 ## Deployment
 
-The app is deployed on [Render.com](https://render.com) (free tier).
+🌐 Frontend → https://veerseva-frontend.onrender.com
+🚀 Backend  → https://veerseva-backend.onrender.com
 
 > **Note:** Free tier services spin down after 15 minutes of inactivity. The first request after idle may take ~50 seconds to respond.
 
